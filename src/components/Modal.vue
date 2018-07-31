@@ -1,9 +1,9 @@
 <template>
     <div id="backModal">
-         <h4>TiTrE</h4>
+         <h4>{{ movie.title }}</h4>
         <figure>
-            <img src="assets/img/starwars.jpg" />
-            <p>Synopsis</p>
+            <img :src="getImgUrl()" />
+            <p>{{ movie.synopsis }}</p>
             <button v-on:click="close">Close</button>
     </figure>
     </div>
@@ -11,10 +11,16 @@
 
 <script>
 export default {
+    props:{
+        movie:{type: Object, required:true}
+    },
     methods:{
         close(){
            return close= true
-        }
+        },
+         getImgUrl(){
+           return `assets/img/${this.movie.url}`
+       },
     }
 }
 </script>

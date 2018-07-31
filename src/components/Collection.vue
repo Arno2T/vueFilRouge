@@ -1,20 +1,25 @@
 <template>
     <main id='collection'>
         
-        <poster v-for="(movie,index) in boucle()" :key=index :url="getImgUrl(movie)" :autre="movie.autre" :title="movie.title"  ></poster>
+        <poster v-for="movie in movies" :key="movie" :movie="movie" :selectMovie="selectMovie" ></poster>
+        <modal v-if="selectedMovie" :movie="selectedMovie"></modal>
 
     </main>
 </template>
 <script>
 import Poster from './Poster.vue'
+import Modal from './Modal.vue'
+
 export default {
   name: 'collection',
   components: {
-    'poster': Poster
+    'poster': Poster,
+     'modal': Modal,
   },
-  data: function(){
+  data(){
       return {
-          movies: null
+          movies: null,
+         selectedMovie: null
       }
   },
    created: async function (){
@@ -26,11 +31,11 @@ export default {
        boucle(){
            return [...this.movies, ...this.movies] 
        },
-       getImgUrl(movie){
-           return `assets/'${movie.url}`
-       }
+        selectMovie(movie){
+        this.selectedMovie = movie
    }
   }
+}
 //   data () {
 //     return {
 //       movies: [

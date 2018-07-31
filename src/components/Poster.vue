@@ -1,18 +1,22 @@
 <template>
-    <figure>
-        <img :src="url" :alt="autre" />
-        <figcaption>{{title}}</figcaption>
+    <figure @click="selectMovie(movie)">
+        <img :src="getImgUrl()" :alt="movie.autre" />
+        <figcaption>{{movie.title}}</figcaption>
     </figure>
 </template>
 
 <script>
 export default {
   props: {
-    url: {type: String, required: true},
-    autre: {type: String, required: true},
-    title: {type: String, required: true}
-
+   movie: {type:Object, required:true},
+   selectMovie: Function
+  },
+  methods: {
+      getImgUrl(){
+           return `assets/img/${this.movie.url}`
+       },
   }
+
 
 }
 </script>

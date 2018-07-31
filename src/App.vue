@@ -11,13 +11,16 @@
 import HeaderMovies from './components/HeaderMovies.vue'
 import Collection from './components/Collection.vue'
 
+
 export default {
   name: 'app',
   components: {
     'header-movies': HeaderMovies,
-    'collection': Collection
+    'collection': Collection,
+  },
+ 
   }
-}
+
 </script>
 
 <style lang="less">

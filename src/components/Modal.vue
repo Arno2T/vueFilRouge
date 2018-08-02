@@ -1,26 +1,46 @@
 <template>
     <div id="backModal">
         <figure>
-             <h4>{{ movie.title }}</h4>
+             <h4>{{ moviesState.selectedMovie.title }}</h4>
             <div id="boxModal">
                 <img :src="getImgUrl()" />
-                <p>{{ movie.synopsis }}</p>
+                <p>{{ moviesState.selectedMovie.synopsis }}</p>
             </div>
-            <button @click="$emit('closeModal')">Close</button>
+            <button @click="closeModal()">Close</button>
     </figure>
     </div>
 </template>
 
 <script>
+import {moviesState} from '../states/movies-states.js'
 export default {
-    props:{
-        movie:{type: Object, required:true},
-        closeModal: Function,
+    data(){
+        return{
+            moviesState 
+        }
     },
+    created(){
+        document.addEventListener('keydown', this.escapeKeylistener)
+    },
+    beforeDestroy(){
+        document.removeEventListener('keydown', this.escapeKeylistener)
+    },
+   
     methods:{
          getImgUrl(){
-           return `assets/img/${this.movie.url}`
+           return `assets/img/${this.moviesState.selectedMovie.url}`
        },
+         closeModal(){
+           this.moviesState.selectedMovie= null
+           
+       },
+       escapeKeylistener(event){
+           console.log(event)
+           if (event.code==='Escape'){
+               this.closeModal()
+           }
+       }
+
     }
 }
 </script>
@@ -63,6 +83,8 @@ export default {
 button{
     border:none;
     background-color: #2b71b8;
+    color: white;
+    height: 30px;
 }
 </style>
 

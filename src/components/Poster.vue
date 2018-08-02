@@ -1,20 +1,28 @@
 <template>
-    <figure @click="$emit('clickOnMovie', movie)">
+    <figure @click="selectMovie()">
         <img :src="getImgUrl()" :alt="movie.autre" />
         <figcaption>{{movie.title}}</figcaption>
     </figure>
 </template>
 
 <script>
+import {moviesState} from '../states/movies-states'
 export default {
   props: {
    movie: {type:Object, required:true},
-   selectMovie: Function
+  },
+  data(){
+      return{
+          moviesState
+      }
   },
   methods: {
       getImgUrl(){
            return `assets/img/${this.movie.url}`
        },
+       selectMovie(){
+           this.moviesState.selectedMovie=this.movie
+       }
   }
 
 
@@ -26,7 +34,6 @@ export default {
 
 figcaption{
    margin-top: 10px;
-   white-space: nowrap;
    overflow: hidden;
    text-overflow: clip ellipsis;
    text-align: center;

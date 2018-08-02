@@ -1,14 +1,15 @@
 <template>
     <main id='collection'>
         
-        <poster v-for="(movie,i) in movies" :key="i" :movie="movie" @clickOnMovie="selectMovie" ></poster>
-        <modal v-if="selectedMovie" :movie="selectedMovie" @closeModal="closeModal"></modal>
+        <poster v-for="(movie,i) in moviesState.movies" :key="i" :movie="movie" ></poster>
+        <modal v-if="moviesState.selectedMovie"></modal>
 
     </main>
 </template>
 <script>
 import Poster from './Poster.vue'
 import Modal from './Modal.vue'
+import {moviesState} from '../states/movies-states.js'
 
 export default {
   name: 'collection',
@@ -16,27 +17,26 @@ export default {
     'poster': Poster,
      'modal': Modal,
   },
-  data(){
-      return {
-         movies: null,
-         selectedMovie: null,
-      }
-  },
-   created: async function (){
+   data(){
+       return {
+           moviesState, // on aurait pu écrire en ES5: moviesState: moviesState. Mais comme on a deux fois le même nom, ES6 autorise cette notation.
+       }
+   },
+   async created (){
        const response= await fetch('movies.json')
        const results= await response.json()
-       this.movies= results
+       this.moviesState.movies= results
    },
    methods: {
        boucle(){
            return [...this.movies, ...this.movies] 
        },
-        selectMovie(movie){
-        this.selectedMovie = movie
-      },
-      closeModal(){
-              this.selectedMovie= null
-      }
+    //     selectMovie(movie){
+    //     this.selectedMovie = movie
+    //   },
+    //   closeModal(){
+    //     this.selectedMovie= null
+    //   }
   }
 }
 //   data () {
@@ -55,6 +55,7 @@ export default {
 
 <style>
 main {
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   overflow: scroll;

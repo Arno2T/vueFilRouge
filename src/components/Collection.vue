@@ -1,8 +1,8 @@
 <template>
     <main id='collection'>
         
-        <poster v-for="movie in movies" :key="movie" :movie="movie" :selectMovie="selectMovie" ></poster>
-        <modal v-if="selectedMovie" :movie="selectedMovie"></modal>
+        <poster v-for="(movie,i) in movies" :key="i" :movie="movie" @clickOnMovie="selectMovie" ></poster>
+        <modal v-if="selectedMovie" :movie="selectedMovie" @closeModal="closeModal"></modal>
 
     </main>
 </template>
@@ -18,8 +18,8 @@ export default {
   },
   data(){
       return {
-          movies: null,
-         selectedMovie: null
+         movies: null,
+         selectedMovie: null,
       }
   },
    created: async function (){
@@ -33,7 +33,10 @@ export default {
        },
         selectMovie(movie){
         this.selectedMovie = movie
-   }
+      },
+      closeModal(){
+              this.selectedMovie= null
+      }
   }
 }
 //   data () {

@@ -1,5 +1,5 @@
 <template>
-    <figure @click="selectMovie(movie)">
+    <figure @click="$emit('clickOnMovie', movie)">
         <img :src="getImgUrl()" :alt="movie.autre" />
         <figcaption>{{movie.title}}</figcaption>
     </figure>

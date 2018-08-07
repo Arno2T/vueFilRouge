@@ -14,34 +14,33 @@
 <script>
 import {moviesState} from '../states/movies-states.js'
 export default {
-    data(){
-        return{
-            moviesState 
-        }
-    },
-    created(){
-        document.addEventListener('keydown', this.escapeKeylistener)
-    },
-    beforeDestroy(){
-        document.removeEventListener('keydown', this.escapeKeylistener)
-    },
-   
-    methods:{
-         getImgUrl(){
-           return `assets/img/${this.moviesState.selectedMovie.url}`
-       },
-         closeModal(){
-           this.moviesState.selectedMovie= null
-           
-       },
-       escapeKeylistener(event){
-           console.log(event)
-           if (event.code==='Escape'){
-               this.closeModal()
-           }
-       }
-
+  data () {
+    return {
+      moviesState
     }
+  },
+  created () {
+    document.addEventListener('keydown', this.escapeKeylistener)
+  },
+  beforeDestroy () {
+    document.removeEventListener('keydown', this.escapeKeylistener)
+  },
+
+  methods: {
+    getImgUrl () {
+      return `assets/img/${this.moviesState.selectedMovie.url}`
+    },
+    closeModal () {
+      this.moviesState.selectedMovie = null
+    },
+    escapeKeylistener (event) {
+      console.log(event)
+      if (event.code === 'Escape') {
+        this.closeModal()
+      }
+    }
+
+  }
 }
 </script>
 
@@ -61,7 +60,7 @@ export default {
     width: 50%;
     border-radius: 5px;
     box-shadow: 0 0 5px 5px white;
-    margin-left: 20%;  
+    margin-left: 20%;
 }
 
 #boxModal{
@@ -87,6 +86,3 @@ button{
     height: 30px;
 }
 </style>
-
-
-

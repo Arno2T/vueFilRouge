@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :focused="isFocused()">
     <header-movies title="Movies"></header-movies>
     <collection>
 
@@ -11,15 +11,19 @@
 import HeaderMovies from './components/HeaderMovies.vue'
 import Collection from './components/Collection.vue'
 
-
 export default {
   name: 'app',
   components: {
     'header-movies': HeaderMovies,
-    'collection': Collection,
+    'collection': Collection
   },
- 
+  methods: {
+    isFocused () {
+      console.log(document.activeElement.tagName)
+    }
   }
+
+}
 
 </script>
 

@@ -9,22 +9,22 @@
 import {moviesState} from '../states/movies-states'
 export default {
   props: {
-   movie: {type:Object, required:true},
+    movie: {type: Object, required: true}
   },
-  data(){
-      return{
-          moviesState
-      }
+  data () {
+    return {
+      moviesState
+    }
   },
   methods: {
-      getImgUrl(){
-           return `assets/img/${this.movie.url}`
-       },
-       selectMovie(){
-           this.moviesState.selectedMovie=this.movie
-       }
-  }
+    getImgUrl () {
+      return `assets/img/${this.movie.url}`
+    },
+    selectMovie () {
+      this.moviesState.selectedMovie = this.movie
+    }
 
+  }
 
 }
 </script>

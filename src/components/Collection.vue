@@ -23,9 +23,11 @@ export default {
     }
   },
   async created () {
-    const response = await fetch('http://localhost:5000/data')
+    this.moviesState.loaded=true
+    const response = await fetch('http://localhost:5000/movie/')
     const results = await response.json()
     this.moviesState.movies = results
+    this.moviesState.loaded=false
   },
   methods: {
     boucle () {

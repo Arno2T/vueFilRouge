@@ -1,21 +1,29 @@
 <template>
   <div id="app" :focused="isFocused()">
     <header-movies title="Movies"></header-movies>
-    <collection>
-
-    </collection>
+    <loader v-if="moviesState.loaded"></loader>
+    <collection> </collection>
   </div>
 </template>
 
 <script>
 import HeaderMovies from './components/HeaderMovies.vue'
 import Collection from './components/Collection.vue'
+import Loader from './components/Loader.vue'
+import {moviesState} from './states/movies-states.js'
+
 
 export default {
   name: 'app',
   components: {
     'header-movies': HeaderMovies,
-    'collection': Collection
+    'collection': Collection,
+    'loader': Loader,
+  },
+  data(){
+    return{
+      moviesState
+    }
   },
   methods: {
     isFocused () {
@@ -43,6 +51,8 @@ export default {
   height: 100vh;
   width: 100vw;
   flex-grow: 1;
+  position: relative;
 
 }
+
 </style>

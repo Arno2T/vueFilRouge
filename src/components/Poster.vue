@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     getImgUrl () {
-      return `assets/img/${this.movie.url}`
+      return this.movie.url
     },
     async selectMovie () {
       // this.moviesState.selectedMovie = this.movie

@@ -1,9 +1,9 @@
 <template>
-    <main id='collection'>
-
-        <poster v-for="(movie,i) in moviesState.movies" :key="i" :movie="movie" ></poster>
-        <modal v-if="moviesState.selectedMovie"></modal>
-
+    <main id='collection' >
+       <div id="slideLeft" :class="{slide: moviesState.selectedMovie}"  >
+         <div id="truc"> <poster v-for="(movie,i) in moviesState.movies" :key="i" :movie="movie" ></poster></div>
+          <modal v-if="moviesState.selectedMovie"></modal>
+       </div>
     </main>
 </template>
 <script>
@@ -36,10 +36,11 @@ export default {
     elementCollection () {
       let grid = document.getElementById('collection')
       console.log(grid)
-    }
-
+    },
   }
 }
+
+
 
 //     selectMovie(movie){
 //     this.selectedMovie = movie
@@ -56,14 +57,32 @@ export default {
 //         {title: 'Sar Wars', url: 'assets/starwars.jpg', autre: 'affiche de Jurassik World'},
 //       ]
 //     }
-//   }
+// //   }
 </script>
 
 <style>
 main {
   height: 100vh;
   display: flex;
-  flex-wrap: wrap;
   overflow: scroll;
+
 }
+#truc{
+  display: flex;
+  width:100vw;
+}
+#slideLeft{
+  display:flex; 
+  width: 200vw; 
+  transition: transform .8s linear;
+}
+.slide{
+  transform: translate3d(-51%, 0,0);
+  
+}
+/* .noslide{
+  transform: translate3d(0,0,0);
+  transition: transform .8s linear
+} */
+
 </style>

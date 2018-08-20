@@ -1,5 +1,5 @@
 <template>
-    
+
         <figure id=modale>
              <h4>{{ moviesState.selectedMovie.title }}</h4>
             <div id="boxModal">
@@ -8,39 +8,39 @@
             </div>
             <button @click="closeModal()">Close</button>
     </figure>
-    
+
 </template>
 
 <script>
-import { moviesState } from "../states/movies-states.js";
+import { moviesState } from '../states/movies-states.js'
 export default {
-  data() {
+  data () {
     return {
       moviesState
-    };
+    }
   },
-  created() {
-    document.addEventListener("keydown", this.escapeKeylistener);
+  created () {
+    document.addEventListener('keydown', this.escapeKeylistener)
   },
-  beforeDestroy() {
-    document.removeEventListener("keydown", this.escapeKeylistener);
+  beforeDestroy () {
+    document.removeEventListener('keydown', this.escapeKeylistener)
   },
 
   methods: {
-    getImgUrl() {
-      return this.moviesState.selectedMovie.url;
+    getImgUrl () {
+      return this.moviesState.selectedMovie.url
     },
-    closeModal() {
-      this.moviesState.selectedMovie = null;
+    closeModal () {
+      this.moviesState.selectedMovie = null
     },
-    escapeKeylistener(event) {
-      console.log(event);
-      if (event.code === "Escape") {
-        this.closeModal();
+    escapeKeylistener (event) {
+      console.log(event)
+      if (event.code === 'Escape') {
+        this.closeModal()
       }
     }
   }
-};
+}
 </script>
 
 <style lang="less">

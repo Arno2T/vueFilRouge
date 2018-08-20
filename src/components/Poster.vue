@@ -22,11 +22,11 @@ export default {
     },
     async selectMovie () {
       // this.moviesState.selectedMovie = this.movie
-      this.moviesState.loaded=true
+      this.moviesState.loaded = true
       const response = await fetch(`http://localhost:5000/movie/${this.movie.id}`)
       const results = await response.json()
       this.moviesState.selectedMovie = results
-      this.moviesState.loaded=false
+      this.moviesState.loaded = false
     }
 
   }

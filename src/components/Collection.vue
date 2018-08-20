@@ -3,7 +3,7 @@
        <div id="slideLeft" :class="{slide: moviesState.selectedMovie}"  >
          <div id="truc"> <poster v-for="(movie,i) in moviesState.movies" :key="i" :movie="movie" ></poster></div>
           <modal v-if="moviesState.selectedMovie"></modal>
-       </div>
+       </div> 
     </main>
 </template>
 <script>
@@ -23,11 +23,11 @@ export default {
     }
   },
   async created () {
-    this.moviesState.loaded=true
+    this.moviesState.loaded = true
     const response = await fetch('http://localhost:5000/movie/')
     const results = await response.json()
     this.moviesState.movies = results
-    this.moviesState.loaded=false
+    this.moviesState.loaded = false
   },
   methods: {
     boucle () {
@@ -36,11 +36,9 @@ export default {
     elementCollection () {
       let grid = document.getElementById('collection')
       console.log(grid)
-    },
+    }
   }
 }
-
-
 
 //     selectMovie(movie){
 //     this.selectedMovie = movie
@@ -60,7 +58,8 @@ export default {
 // //   }
 </script>
 
-<style>
+<style lang="less">
+
 main {
   height: 100vh;
   display: flex;
@@ -72,14 +71,15 @@ main {
   width:100vw;
 }
 #slideLeft{
-  display:flex; 
-  width: 200vw; 
+  display:flex;
+  width: 200vw;
   transition: transform .8s linear;
 }
 .slide{
   transform: translate3d(-51%, 0,0);
-  
+
 }
+
 /* .noslide{
   transform: translate3d(0,0,0);
   transition: transform .8s linear

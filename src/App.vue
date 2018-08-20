@@ -2,7 +2,7 @@
   <div id="app" :focused="isFocused()">
     <header-movies title="Movies"></header-movies>
     <loader v-if="moviesState.loaded"></loader>
-    <collection> </collection>
+   <render-view></render-view>
   </div>
 </template>
 
@@ -18,10 +18,10 @@ export default {
   components: {
     'header-movies': HeaderMovies,
     'collection': Collection,
-    'loader': Loader,
+    'loader': Loader
   },
-  data(){
-    return{
+  data () {
+    return {
       moviesState
     }
   },

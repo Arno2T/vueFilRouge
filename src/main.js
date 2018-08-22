@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import Form from './components/Form.vue'
+import Collection from './components/Collection.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)

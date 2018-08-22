@@ -1,10 +1,6 @@
 <template>
     <header>
         <h1>{{ title }}</h1>
-        <p> 
-         <router-link to="/addMovie" id="addMovie">Ajouter un film</router-link>
-         <router-view></router-view>
-        </p>
     </header>
 </template>
 

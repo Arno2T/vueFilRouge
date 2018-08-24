@@ -45,6 +45,8 @@ figcaption{
    font-weight: bold;
 }
 img{
+    width: 160px;
+    height: 213px;
     transition: transform 1s;
     border-radius: 3px;
     box-shadow: 0 0 5px 5px black;

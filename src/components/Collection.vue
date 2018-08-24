@@ -68,6 +68,7 @@ main {
 }
 #truc{
   display: flex;
+  flex-wrap: wrap;
   width:100vw;
 }
 #slideLeft{

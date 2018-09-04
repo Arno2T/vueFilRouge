@@ -1,7 +1,7 @@
 <template>
     <figure @click="selectMovie()">
         <img :src="getImgUrl()" :alt="movie.autre" />
-        <figcaption>{{movie.title}}</figcaption>
+        <figcaption id="posterTitle">{{movie.title}}</figcaption>
     </figure>
 </template>
 
@@ -21,11 +21,11 @@ export default {
       return this.movie.url
     },
     async selectMovie () {
-      // this.moviesState.selectedMovie = this.movie
       this.moviesState.loaded = true
-      const response = await fetch(`http://localhost:5000/movie/${this.movie.id}`)
+      const response = await fetch(`http://localhost:5000/movie/${this.movie._id}`)
       const results = await response.json()
       this.moviesState.selectedMovie = results
+      console.log('selected', this.moviesState.selectedMovie)
       this.moviesState.loaded = false
     }
 
@@ -39,10 +39,14 @@ export default {
 
 figcaption{
    margin-top: 10px;
-   overflow: hidden;
-   text-overflow: clip ellipsis;
    text-align: center;
    font-weight: bold;
+}
+#posterTitle{
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 img{
     width: 160px;

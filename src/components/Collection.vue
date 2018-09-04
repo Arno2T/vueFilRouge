@@ -3,7 +3,7 @@
        <div id="slideLeft" :class="{slide: moviesState.selectedMovie}"  >
          <div id="truc"> <poster v-for="(movie,i) in moviesState.movies" :key="i" :movie="movie" ></poster></div>
           <modal v-if="moviesState.selectedMovie"></modal>
-       </div> 
+       </div>
     </main>
 </template>
 <script>
@@ -28,6 +28,24 @@ export default {
     const results = await response.json()
     this.moviesState.movies = results
     this.moviesState.loaded = false
+  },
+  sockets: {
+    'insert-movie': function (movie){
+      this.moviesState.movies.push(movie)
+    },
+    
+    'delete-movie': function (movie){
+        this.moviesState.movies.find((element)=>{
+                if(element._id!==movie._id) this.moviesState.movies.splice(movie, 1)
+        })   
+       },
+          
+     'update-movie': function(movie){
+     this.moviesState.movies.find((element, index)=>{
+        if(element._id==movie._id) this.moviesState.movies.splice(index, 1, movie)
+        
+     })
+    },
   },
   methods: {
     boucle () {
@@ -59,31 +77,22 @@ export default {
 </script>
 
 <style lang="less">
-
 main {
   height: 100vh;
   display: flex;
   overflow: scroll;
-
 }
-#truc{
+#truc {
   display: flex;
   flex-wrap: wrap;
-  width:100vw;
+  width: 100vw;
 }
-#slideLeft{
-  display:flex;
+#slideLeft {
+  display: flex;
   width: 200vw;
-  transition: transform .8s linear;
+  transition: transform 0.8s linear;
 }
-.slide{
-  transform: translate3d(-51%, 0,0);
-
+.slide {
+  transform: translate3d(-51%, 0, 0);
 }
-
-/* .noslide{
-  transform: translate3d(0,0,0);
-  transition: transform .8s linear
-} */
-
 </style>

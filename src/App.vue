@@ -1,7 +1,7 @@
 <template>
   <div id="app" :focused="isFocused()">
     <header-movies title="Movies"></header-movies>
-     <p> 
+     <p>
          <router-link to="/addMovie" id="addMovie">Ajouter un film</router-link>
         </p>
     <loader v-if="moviesState.loaded"></loader>
@@ -15,7 +15,6 @@ import Collection from './components/Collection.vue'
 import Loader from './components/Loader.vue'
 import {moviesState} from './states/movies-states.js'
 import Form from './components/Form.vue'
-
 
 export default {
   name: 'app',

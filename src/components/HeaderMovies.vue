@@ -7,9 +7,9 @@
 <script>
 import Form from './Form.vue'
 export default {
-    components:{
-        'form-movie': Form ,
-    },
+  components: {
+    'form-movie': Form
+  },
 
   props: {
     title: {type: String, required: true}
@@ -24,6 +24,6 @@ export default {
     a{
   color: white;
   text-decoration: none;
-  
+
 }
 </style>
